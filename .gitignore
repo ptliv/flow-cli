@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+node_modules/
+*.key
+secrets/
+_cookie_vault.json
+.gflow_account
