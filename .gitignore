@@ -7,3 +7,4 @@ node_modules/
 secrets/
 _cookie_vault.json
 .gflow_account
+.pytest_cache/

@@ -3,6 +3,7 @@
 Subcommands added on top of `gflow`:
   - `gflow dachapgo-status` : Show local Dachapgo `:50330` server status + configured Google profiles.
   - `gflow dachapgo-stop <profile>` : Safely stop a Dachapgo browser profile and vault cookies.
+  - `gflow rotate run|batch|status|reset` : Multi-account rotation (see flow_rotate.py).
   - All standard `gflow` commands (`image t2i`, `image i2i`, `video t2v`, `video i2v`,
     `video r2v`, `video extend`, `credits user`, `project list`, `auth list`, `mcp`, etc.)
 """
@@ -89,6 +90,11 @@ def _handle_dachapgo_custom(argv: list[str]) -> int | None:
 
 
 def main() -> None:
+    if sys.argv[1:2] == ["rotate"]:
+        sys.path.insert(0, str(ROOT))
+        from flow_rotate import main as rotate_main
+
+        sys.exit(rotate_main(sys.argv[2:]))
     custom_rc = _handle_dachapgo_custom(sys.argv[1:])
     if custom_rc is not None:
         sys.exit(custom_rc)
